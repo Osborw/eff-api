@@ -5,9 +5,14 @@ fastify.register(require('fastify-cors'), {
   origin: true
 })
 
-fastify.get('/:position', async (request, reply) => {
+fastify.get('/allSeason/:position', async (request, reply) => {
   console.log('--Call made from', request.hostname, '--')
   return await Store.getTop50(request.params.position)
+})
+
+fastify.get('/fiveWeeks/:position', async (request, reply) => {
+  console.log('--Call made from', request.hostname, '--')
+  return await Store.getFiveWeekTop50(request.params.position)
 })
 
 const start = async () => {
